@@ -87,26 +87,6 @@ public class Tablero {
     //Se mostrará el estado actual del tablero en blanco, conforme avanze la 
     //partida se irá modificando con las casillas bombardeadas
         
-    //FORMA MEDIANTE METODOS IF PARA LA REPRESENTACIÓN DEL TABLERO
-    /*
-        for (int i = 0; i < tablero.length; i++) {
-            System.out.print('|');
-            for (int j = 0; j < tablero[i].length; j++) {
-                if(tablero[i][j] == 'x'){//Cuando en el array haya una x será poque el ataque ha tocado un barco y mostrará B de barco
-                    System.out.print("B");
-                    System.out.print('|');
-                }else if(tablero[i][j]== 'y'){//Cuando en el array haya una y será poque el ataque ha tocado agua y mostrará A de agua
-                    System.out.print("A");
-                    System.out.print('|');
-                }else{//El resto significa que no han sido descubiertas esas casillas
-                    System.out.print('~');
-                    System.out.print('|');
-                }
-            }
-            System.out.println();
-            
-        }*/
-        
     //REPRESENTACIÓN MEDIANTE SWITCH(Cambio automático recomendado por NetBeans)
         for (int i = 0; i < tablero.length; i++) {
             System.out.print('|');
