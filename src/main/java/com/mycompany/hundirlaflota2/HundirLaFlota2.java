@@ -26,11 +26,6 @@ public class HundirLaFlota2 {
         fila=sc.nextInt();
         
         
-        //Temporalmente mientras probamos
-        //columna=10;
-        //fila=10;
-        
-        
         Tablero t = new Tablero(columna, fila);//Iniciamos el tablero
         t.colocarBarcos(4);
         t.colocarBarcos(3);
@@ -41,12 +36,6 @@ public class HundirLaFlota2 {
         t.colocarBarcos(1);
         municion=t.getMunicion();
         
-        
-        
-        System.out.println("Munición restante: "+municion);
-        //a.flash();
-        //municion=a.getMunicion();
-        
         //MENU DE ACCIONES
         
         while(municion>0){
@@ -55,7 +44,7 @@ public class HundirLaFlota2 {
             System.out.println("¿Qué desea hacer?: ");
             System.out.println("1. Disparo Normal");
             System.out.println("2. Bomba Barrena");
-            System.out.println("3. Bomba Átomica");
+            System.out.println("3. Bomba Atomica");
             System.out.println("4. Pista");
             System.out.println("5. Flash");
             opt=sc.nextInt();

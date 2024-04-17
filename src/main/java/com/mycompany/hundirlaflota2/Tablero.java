@@ -140,7 +140,7 @@ public class Tablero {
     public void disparoNormal(){
     //Ataque normal resta 1 bala.
     //Despeja la casilla seleccionada.
-    int f, c; //Creamos variables para recoger las casillas que vamos a disparar
+        int f, c; //Creamos variables para recoger las casillas que vamos a disparar
     
     
         System.out.println("¿Qué casilla desea atacar?: *Las casillas empiezan en 0*");
@@ -155,11 +155,6 @@ public class Tablero {
         }else {
             System.out.println("No tienes sufuciente munición");
         }
-        
-        
-        
-        
-        
     }
    
     
@@ -177,9 +172,7 @@ public class Tablero {
                 
                 System.out.println("¿Que fila deseas desas despejas?: *Las casillas empiezan en 0*");
                 opt=sc.nextInt();
-                
-                
-                
+
                 total=this.columna+2;//restamos el numero de columnas (Longitud de la fila) + 2
                 
                 if((this.municion - total)>0){//se puede disparar siempre que quede municion
@@ -197,9 +190,7 @@ public class Tablero {
                 break;
                 
             case 2: //COLUMNA
-                
-                
-                
+
                 System.out.println("¿Que fila deseas desas despejas?: *Las casillas empiezan en 0*");
                 opt=sc.nextInt();
                 
@@ -218,15 +209,12 @@ public class Tablero {
                 break;
             default:
                 System.out.println("La opción seleccionada no existe.");
-                
         }
     }
     
     public void disparoAtomico(){
     //descubre una celda y todas sus adyacentes con un coste de 10 balas
-    
-    
-        
+ 
         if((this.municion - 10)>0){//se puede disparar siempre que quede municion    
         //Preguntamos al usario las casillas a disparar y cambiamos de valor las adyacentes y la disparada
             
@@ -249,8 +237,7 @@ public class Tablero {
             cambiarCasilla(f+1,c-1);//fila inferior
             cambiarCasilla(f+1,c);//fila inferior
             cambiarCasilla(f+1,c+1);//fila inferior
-            
-            
+
             this.municion-=10;
         }else{
             System.out.println("No tiene suficiente munición.");
@@ -274,8 +261,7 @@ public class Tablero {
                           break;
                         }
                     }
-                }
-                
+                }   
             }
             
             this.municion-=15;
@@ -532,7 +518,6 @@ public class Tablero {
                         }else{
                             break;
                         }
-                    
                     }
                     
                     if(esPosible==true){
