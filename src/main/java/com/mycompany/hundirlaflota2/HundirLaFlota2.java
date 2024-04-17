@@ -19,7 +19,6 @@ public class HundirLaFlota2 {
         int opt=0;
         int municion;
         
-        
         System.out.println("Introduzca el ancho del tablero:");
         columna=sc.nextInt();
         System.out.println("Introduzca el largo del tablero:");

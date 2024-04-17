@@ -336,12 +336,19 @@ public class Tablero {
         int intento=10;
         
         while(intento>0 && esPosible!=true){
-            if((columna>=0 && fila>=0) && (this.tablero[columna][fila]!='B')){
+            if(columna>=0 && fila>=0){
                 esPosible=true;
             }else{
                 esPosible=false;
                 intento--;
             }
+            if(this.tablero[columna][fila]!='B'){
+                esPosible=true;
+            }else{
+                esPosible=false;
+                intento--;
+            }
+            
         }
         
         return esPosible;
