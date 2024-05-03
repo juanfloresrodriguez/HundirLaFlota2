@@ -41,18 +41,18 @@ public class Tablero {
         this.columna= c;
         this.fila=f;
         
-        this.municion=1500;//Munición temporal para poder hacer pruebas
+        this.municion=30;//Munición temporal para poder hacer pruebas
         
         //this.municion=(columna*fila)/3;//Calculamos la munición disponible
         this.tablero = new char [f][c];
     }
     
     //GETTER
-    public int getC(){
+    public int getN(){
         return this.columna;
     }
     
-    public int getF(){
+    public int getM(){
         return this.fila;
     }
     
