@@ -349,7 +349,7 @@ public class Tablero {
             }else{
                 esPosible=false;
                 intento--;
-            }
+        }
         }
         
         return esPosible;
