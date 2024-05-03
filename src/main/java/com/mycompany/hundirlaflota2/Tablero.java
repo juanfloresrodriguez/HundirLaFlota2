@@ -48,11 +48,11 @@ public class Tablero {
     }
     
     //GETTER
-    public int getN(){
+    public int getC(){
         return this.columna;
     }
     
-    public int getM(){
+    public int getF(){
         return this.fila;
     }
     
@@ -66,12 +66,12 @@ public class Tablero {
         return this.bandera;
     }
     //SETTER
-    public void setN(int n){
-        this.columna=n;
+    public void setC(int c){
+        this.columna=c;
     }
     
-    public void setM(int m){
-        this.columna=m;
+    public void setF(int f){
+        this.fila=f;
     }
     
     public void setTablero(char[][] t){
@@ -392,8 +392,8 @@ public class Tablero {
                     nf=fila;
                     for(int i=0;i<size;i++){
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nc, nf);
-                            nc-=1;
+                            esPosible=comprobarColocacion(nf, nc);
+                            nf+=1;
                         }else{
                             break;
                         }
@@ -401,8 +401,8 @@ public class Tablero {
                     
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
-                            this.tablero[columna][fila]='B';
-                            columna-=1;
+                            this.tablero[fila][columna]='B';
+                            fila+=1;
                         }
                     }
                     
@@ -412,9 +412,9 @@ public class Tablero {
                     nf=fila;
                     for(int i=0;i<size;i++){
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nc, nf);
-                            nc+=1;
-                            nf+=1;
+                            esPosible=comprobarColocacion(nf, nc);
+                            nf-=1;
+                            nc-=1;
                         }else{
                             break;
                         }
@@ -422,9 +422,9 @@ public class Tablero {
                     
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
-                            this.tablero[columna][fila]='B';
-                            columna+=1;
-                            fila+=1;
+                            this.tablero[fila][columna]='B';
+                            fila-=1;
+                            columna-=1;
                         }
                     }
                     
@@ -434,9 +434,9 @@ public class Tablero {
                     nf=fila;
                     for(int i=0;i<size;i++){
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nc, nf);
-                            nc-=1;
-                            nf-=1;
+                            esPosible=comprobarColocacion(nf, nc);
+                            nf+=1;
+                            nc+=1;
                         }else{
                             break;
                         }
@@ -444,9 +444,9 @@ public class Tablero {
                     
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
-                            this.tablero[columna][fila]='B';
-                            columna-=1;
-                            fila-=1;
+                            this.tablero[fila][columna]='B';
+                            fila+=1;
+                            columna+=1;
                         }
                     }
                     
@@ -456,9 +456,9 @@ public class Tablero {
                     nf=fila;
                     for(int i=0;i<size;i++){
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nc, nf);
-                            nc+=1;
+                            esPosible=comprobarColocacion(nf, nc);
                             nf-=1;
+                            nc+=1;
                         }else{
                             break;
                         }
@@ -466,9 +466,9 @@ public class Tablero {
                     
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
-                            this.tablero[columna][fila]='B';
-                            columna+=1;
+                            this.tablero[fila][columna]='B';
                             fila-=1;
+                            columna+=1;
                         }
                     }
                     
@@ -478,9 +478,9 @@ public class Tablero {
                     nf=fila;
                     for(int i=0;i<size;i++){
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nc, nf);
-                            nc-=1;
+                            esPosible=comprobarColocacion(nf, nc);
                             nf+=1;
+                            nc-=1;
                         }else{
                             break;
                         }
@@ -488,9 +488,9 @@ public class Tablero {
                     
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
-                            this.tablero[columna][fila]='B';
-                            columna-=1;
+                            this.tablero[fila][columna]='B';
                             fila+=1;
+                            columna-=1;
                         }
                     }
                     
@@ -500,8 +500,8 @@ public class Tablero {
                     nf=fila;
                     for(int i=0;i<size;i++){
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nc, nf);
-                            nf-=1;
+                            esPosible=comprobarColocacion(nf, nc);
+                            nc+=1;
                         }else{
                             break;
                         }
@@ -509,9 +509,9 @@ public class Tablero {
                     
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
-                            this.tablero[columna][fila]='B';
+                            this.tablero[fila][columna]='B';
                             
-                            fila-=1;
+                            columna+=1;
                         }
                     }
                     
@@ -521,8 +521,8 @@ public class Tablero {
                     nf=fila;
                     for(int i=0;i<size;i++){
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nc, nf);
-                            nf+=1;
+                            esPosible=comprobarColocacion(nf, nc);
+                            nc-=1;
                         }else{
                             break;
                         }
@@ -530,9 +530,9 @@ public class Tablero {
                     
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
-                            this.tablero[columna][fila]='B';
+                            this.tablero[fila][columna]='B';
                             
-                            fila+=1;
+                            columna-=1;
                         }
                     }
                     
