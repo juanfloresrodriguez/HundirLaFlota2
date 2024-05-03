@@ -24,8 +24,10 @@ public class HundirLaFlota2 {
         System.out.println("Introduzca el largo del tablero:");
         fila=sc.nextInt();
         
+        //Iniciamos el tablero
         
-        Tablero t = new Tablero(columna, fila);//Iniciamos el tablero
+        Tablero t = new Tablero(fila, columna);
+        
         t.colocarBarcos(4);
         t.colocarBarcos(3);
         t.colocarBarcos(3);

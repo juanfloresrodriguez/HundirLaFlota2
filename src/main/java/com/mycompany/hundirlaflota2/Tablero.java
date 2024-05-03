@@ -15,13 +15,9 @@ import java.util.Scanner;
 public class Tablero {
     Scanner sc = new Scanner(System.in);
     
-    private int columna, fila;
+    private int columna;
+    private int fila;
     private boolean bandera=true;//Cuando bandera sea false no se podrá seguir atacando y la partida habrá acabado
-    private int normal;
-    private int barrena;
-    private int atomica;
-    private int pista;
-    private int flash;
     private int municion;
     //Tablero iniciado staticamente para pruebas de disparos
     /*private char tablero[][] =  {
@@ -41,14 +37,14 @@ public class Tablero {
     
     
     
-    Tablero(int n, int m){
-        this.columna= n;
-        this.fila=m;
+    Tablero(int f, int c){
+        this.columna= c;
+        this.fila=f;
         
         this.municion=1500;//Munición temporal para poder hacer pruebas
         
         //this.municion=(columna*fila)/3;//Calculamos la munición disponible
-        this.tablero = new char [n][m];
+        this.tablero = new char [f][c];
     }
     
     //GETTER
@@ -125,11 +121,11 @@ public class Tablero {
         */
         
         if(f>=0 && c >= 0){ 
-            if(this.tablero[c][f]=='B'){
-                this.tablero[c][f]='x';
-            }else if(this.tablero[c][f]=='A'){
-                this.tablero[c][f]='y';
-            }else if(this.tablero[c][f]=='x' || this.tablero[c][f]=='y'){
+            if(this.tablero[f][c]=='B'){
+                this.tablero[f][c]='x';
+            }else if(this.tablero[f][c]=='A'){
+                this.tablero[f][c]='y';
+            }else if(this.tablero[f][c]=='x' || this.tablero[f][c]=='y'){
                 System.out.println("No puedes disparar a una casilla ya descubierta"); 
             }
         }
@@ -331,7 +327,7 @@ public class Tablero {
     
     //COLOCACIÓN AUTOMÁTICA DE LOS BARCOS
   
-    public boolean comprobarColocacion(int columna, int fila){
+    public boolean comprobarColocacion(int fila, int columna){
         boolean esPosible=false;
         int intento=10;
         
@@ -342,13 +338,18 @@ public class Tablero {
                 esPosible=false;
                 intento--;
             }
-            if(this.tablero[columna][fila]!='B'){
+            if(this.tablero[fila][columna]!='B'){
                 esPosible=true;
             }else{
                 esPosible=false;
                 intento--;
             }
-            
+            if(columna<this.columna && fila<this.fila){
+                esPosible=true;
+            }else{
+                esPosible=false;
+                intento--;
+            }
         }
         
         return esPosible;
@@ -358,7 +359,7 @@ public class Tablero {
         
         int intento=10;
         boolean esPosible=true;
-        int opt=(int) (Math.random()*8+1);
+        int opt=1;//(int) (Math.random()*8+1);
         int columna=(int) (Math.random()*(this.columna-1));
         int fila=(int) (Math.random()*(this.fila-1));
         int nc,nf;
@@ -371,8 +372,8 @@ public class Tablero {
                     nf=fila;
                     for(int i=0;i<size;i++){
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nc, nf);
-                            nc+=1;
+                            esPosible=comprobarColocacion(nf, nc);
+                            nf-=1;
                         }else{
                             break;
                         }
@@ -380,8 +381,8 @@ public class Tablero {
                     
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
-                            this.tablero[columna][fila]='B';
-                            columna+=1;
+                            this.tablero[fila][columna]='B';
+                            fila-=1;
                         }
                     }
                     
