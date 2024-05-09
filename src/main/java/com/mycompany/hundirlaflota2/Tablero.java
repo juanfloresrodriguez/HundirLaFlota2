@@ -329,22 +329,16 @@ public class Tablero {
   
     public boolean comprobarColocacion(int fila, int columna){
         boolean esPosible=false;
+        boolean esDentro=false;
         int intento=10;
         
         while(intento>0 && esPosible!=true){
-            //-- CREAR FUNCION ESDENTRO
-            if(columna>=0 && fila>=0){
-                esPosible=true;
-            }else{
-                esPosible=false;
+            //-- CREAR FUNCION para espacios entre medias
+            esDentro=esDentro(fila,columna);
+            if(esDentro==false){//Si es dentro es false(Esta fuera del tablero) rompe la ejecución
                 break;
             }
-            if(columna<this.columna && fila<this.fila){
-                esPosible=true;
-            }else{
-                esPosible=false;
-                break;
-            }
+            
             if(this.tablero[fila][columna]!='B'){
                 esPosible=true;
             }else{
@@ -355,6 +349,22 @@ public class Tablero {
         }
         
         return esPosible;
+    }
+    
+    boolean esDentro(int fila, int columna){//Comprueba si esta dentro del tablero
+        boolean esDentro=false;
+        if(columna>=0 && fila>=0){
+            esDentro=true;
+        }else{
+            esDentro=false;       
+        }
+        if(columna<this.columna && fila<this.fila && esDentro!=false){
+            esDentro=true;
+        }else{
+            esDentro=false;
+        }
+        
+        return esDentro;
     }
     
     public void colocarBarcos(int size){
