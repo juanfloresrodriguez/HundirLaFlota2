@@ -29,13 +29,19 @@ public class HundirLaFlota2 {
         
         Tablero t = new Tablero(fila, columna);
         
-        t.colocarBarcos(4);
-        t.colocarBarcos(3);
-        t.colocarBarcos(3);
-        t.colocarBarcos(2);
-        t.colocarBarcos(2);
-        t.colocarBarcos(1);
-        t.colocarBarcos(1);
+        esPosible=t.colocarBarcos(4);
+        esPosible=t.colocarBarcos(3);
+        esPosible=t.colocarBarcos(3);
+        esPosible=t.colocarBarcos(2);
+        esPosible=t.colocarBarcos(2);
+        esPosible=t.colocarBarcos(1);
+        esPosible=t.colocarBarcos(1);
+        if(esPosible!=true){//si no es posible colocar los barcos interumpe la ejecución del programa
+            System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
+            System.exit(0);
+        }
+        
+        
         municion=t.getMunicion();
         
         //MENU DE ACCIONES

@@ -480,7 +480,7 @@ public class Tablero {
         return esPosible;
     }
     
-    public void colocarBarcos(int size){
+    public boolean colocarBarcos(int size){
         
         int intento=10;
         boolean esPosible=true;
@@ -675,6 +675,8 @@ public class Tablero {
             }
         }
         colocarAgua();
+        
+        return esPosible;
     }
     
     //METODO COLOCACIÓN AGUA
