@@ -332,24 +332,26 @@ public class Tablero {
         int intento=10;
         
         while(intento>0 && esPosible!=true){
+            //-- CREAR FUNCION ESDENTRO
             if(columna>=0 && fila>=0){
                 esPosible=true;
             }else{
                 esPosible=false;
-                intento--;
-            }
-            if(this.tablero[fila][columna]!='B'){
-                esPosible=true;
-            }else{
-                esPosible=false;
-                intento--;
+                break;
             }
             if(columna<this.columna && fila<this.fila){
                 esPosible=true;
             }else{
                 esPosible=false;
-                intento--;
+                break;
             }
+            if(this.tablero[fila][columna]!='B'){
+                esPosible=true;
+            }else{
+                esPosible=false;
+                break;
+            }
+            
         }
         
         return esPosible;
@@ -359,20 +361,25 @@ public class Tablero {
         
         int intento=10;
         boolean esPosible=true;
-        int opt=1;//(int) (Math.random()*8+1);
-        int columna=(int) (Math.random()*(this.columna-1));
-        int fila=(int) (Math.random()*(this.fila-1));
-        int nc,nf;
+        boolean colocado=false;
+                int nc,nf;
         
-        //while(intento>0){
+        while(intento>0 && colocado==false){
+            int opt=1;//(int) (Math.random()*8+1);
+            int columna=(int) (Math.random()*(this.columna-1));
+            int fila=(int) (Math.random()*(this.fila-1));
+
+            
+        
             switch(opt){
 
                 case 1: //Colocación hacia arriba
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nf-=1;
                         }else{
                             break;
@@ -384,6 +391,7 @@ public class Tablero {
                             this.tablero[fila][columna]='B';
                             fila-=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
@@ -538,7 +546,11 @@ public class Tablero {
                     
                     break;
             }
-        //}
+            
+            if (esPosible==false){
+                intento--;
+            }
+        }
         colocarAgua();
     }
     
