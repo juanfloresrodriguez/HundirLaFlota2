@@ -351,7 +351,7 @@ public class Tablero {
         return esPosible;
     }
     
-    boolean esDentro(int fila, int columna){//Comprueba si esta dentro del tablero
+    private boolean esDentro(int fila, int columna){//Comprueba si esta dentro del tablero
         boolean esDentro=false;
         if(columna>=0 && fila>=0){
             esDentro=true;
