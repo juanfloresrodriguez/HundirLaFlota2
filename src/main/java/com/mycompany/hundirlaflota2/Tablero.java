@@ -334,12 +334,21 @@ public class Tablero {
         
         while(intento>0 && esPosible!=true){
             //-- CREAR FUNCION para espacios entre medias
+            
+            esPosible=comprobarAlrededor(fila,columna);
+            
             esDentro=esDentro(fila,columna);
             if(esDentro==false){//Si es dentro es false(Esta fuera del tablero) rompe la ejecución
                 break;
             }
             
             esPosible=hayBarco(fila,columna);
+            
+            if(hayBarco(fila,columna)==true){//si hay barco en esa posición rompe la ejecución si no lo hubiera cambia es posible a true
+                break;
+            }else{
+                esPosible=true;
+            }
             
             
             /*if(this.tablero[fila][columna]!='B'){
