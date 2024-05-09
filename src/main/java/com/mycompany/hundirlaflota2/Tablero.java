@@ -41,7 +41,7 @@ public class Tablero {
         this.columna= c;
         this.fila=f;
         
-        this.municion=30;//Munición temporal para poder hacer pruebas
+        this.municion=3000;//Munición temporal para poder hacer pruebas
         
         //this.municion=(columna*fila)/3;//Calculamos la munición disponible
         this.tablero = new char [f][c];
@@ -349,7 +349,7 @@ public class Tablero {
             }else{
                 esPosible=false;
                 intento--;
-        }
+            }
         }
         
         return esPosible;
