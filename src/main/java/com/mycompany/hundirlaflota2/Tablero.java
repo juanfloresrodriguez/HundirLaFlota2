@@ -335,7 +335,7 @@ public class Tablero {
         while(intento>0 && esPosible!=true){
             //-- CREAR FUNCION para espacios entre medias
             
-            esPosible=comprobarAlrededor(fila,columna);
+            
             
             esDentro=esDentro(fila,columna);
             if(esDentro==false){//Si es dentro es false(Esta fuera del tablero) rompe la ejecución
@@ -350,6 +350,7 @@ public class Tablero {
                 esPosible=true;
             }
             
+            esPosible=comprobarAlrededor(fila,columna);
             
             /*if(this.tablero[fila][columna]!='B'){
                 esPosible=true;
@@ -390,7 +391,9 @@ public class Tablero {
         return esDentro;
     }
     
-    private boolean comprobarAlrededor(int fila, int columna){
+    
+    
+    private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes
         boolean esPosible=true;
         
         
@@ -674,14 +677,14 @@ public class Tablero {
                 intento--;
             }
         }
-        colocarAgua();
+        //colocarAgua();
         
         return esPosible;
     }
     
     //METODO COLOCACIÓN AGUA
     
-    private void colocarAgua(){
+    public void colocarAgua(){
         for (int i=0;i<tablero.length;i++){
             for (int j=0;j<tablero[i].length;j++){
                 if(tablero[i][j]!='B'){

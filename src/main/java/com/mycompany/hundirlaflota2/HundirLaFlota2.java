@@ -36,9 +36,11 @@ public class HundirLaFlota2 {
         esPosible=t.colocarBarcos(2);
         esPosible=t.colocarBarcos(1);
         esPosible=t.colocarBarcos(1);
-        if(esPosible!=true){//si no es posible colocar los barcos interumpe la ejecución del programa
+        if(esPosible!=true){//si no es posible colocar los barcos interumpe la ejecución del programa si es posible la colocación colocará el agua
             System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
             System.exit(0);
+        }else{
+            t.colocarAgua();
         }
         
         
