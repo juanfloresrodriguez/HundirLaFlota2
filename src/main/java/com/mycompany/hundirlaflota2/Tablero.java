@@ -486,10 +486,11 @@ public class Tablero {
         
         
         return esPosible;
-    }
-    */
+    }*/
+    
     
     //NUEVO COMPROBARALREDEDOR
+    
     private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes SIN ESDENTRO()
         boolean esPosible=true;
         
@@ -500,8 +501,8 @@ public class Tablero {
         }
         
         //fila superior
-        if (esPosible == true && hayBarco(fila - 1, columna)==true) {
-            esPosible = false;
+        if(esPosible==true && hayBarco(fila-1,columna)==true){
+            esPosible=false;
         }
         
         //fila superior
@@ -553,7 +554,7 @@ public class Tablero {
         int intento=10;
         boolean esPosible=true;
         boolean colocado=false;
-                int nc,nf;
+        int nc,nf;
         
         while(intento>0 && colocado==false){
             int opt=1;//(int) (Math.random()*8+1);
