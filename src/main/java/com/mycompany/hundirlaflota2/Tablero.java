@@ -248,16 +248,19 @@ public class Tablero {
     
         if((this.municion -15)>0){//se puede usar siempre que quede municion
             
+            
             for(int i=0;i<tablero.length;i++){
-                while (esPosible!=true){
-                    for(int j=0;j<tablero[i].length;j++){
-                        if (tablero[i][j]=='B'){
-                          cambiarCasilla(j,i);
-                          esPosible=true;
-                          break;
-                        }
+                    
+                for(int j=0;j<tablero[i].length;j++){
+                    if (tablero[i][j]=='B'){
+                        cambiarCasilla(j,i);
+                        esPosible=true;
+                        break;
                     }
-                }   
+                }
+                if(esPosible==true){
+                    break;
+                }
             }
             
             this.municion-=15;
@@ -398,7 +401,7 @@ public class Tablero {
     
     
     
-    /*private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes
+    private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes
         boolean esPosible=true;
         
         
@@ -486,12 +489,12 @@ public class Tablero {
         
         
         return esPosible;
-    }*/
+    }
     
     
     //NUEVO COMPROBARALREDEDOR
     
-    private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes SIN ESDENTRO()
+    /*private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes SIN ESDENTRO()
         boolean esPosible=true;
         
         
@@ -547,14 +550,14 @@ public class Tablero {
         
         
         return esPosible;
-    }
+    }*/
     
     public boolean colocarBarcos(int size){
         
         int intento=10;
         boolean esPosible=true;
         boolean colocado=false;
-        int nc,nf;
+                int nc,nf;
         
         while(intento>0 && colocado==false){
             int opt=1;//(int) (Math.random()*8+1);
