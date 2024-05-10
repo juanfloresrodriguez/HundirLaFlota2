@@ -253,7 +253,7 @@ public class Tablero {
                     
                 for(int j=0;j<tablero[i].length;j++){
                     if (tablero[i][j]=='B'){
-                        cambiarCasilla(j,i);
+                        cambiarCasilla(i,j);
                         esPosible=true;
                         break;
                     }
@@ -328,11 +328,11 @@ public class Tablero {
         }
     }
     
-    //COLOCACIÓN AUTOMÁTICA DE LOS BARCOS
+    //COLOCACION AUTOMATICA DE LOS BARCOS
   
     public boolean comprobarColocacion(int fila, int columna){
         boolean esPosible=true;
-        boolean esDentro=false;
+        //boolean esDentro=false;
         boolean alrededor=false;
         int intento=10;
         
@@ -341,8 +341,8 @@ public class Tablero {
             
             
             
-            esDentro=esDentro(fila,columna);
-            if(esDentro==false){//Si es dentro es false(Esta fuera del tablero) rompe la ejecución
+            esPosible=esDentro(fila,columna);
+            if(esPosible==false){//Si es dentro es false(Esta fuera del tablero) rompe la ejecución
                 break;
             }
             
@@ -355,6 +355,10 @@ public class Tablero {
             }
             
             alrededor=comprobarAlrededor(fila,columna);
+            
+            if(alrededor==false){
+                esPosible=false;
+            }
             
             /*if(this.tablero[fila][columna]!='B'){
                 esPosible=true;
@@ -551,7 +555,7 @@ public class Tablero {
         
         return esPosible;
     }*/
-    
+   
     public boolean colocarBarcos(int size){
         
         int intento=10;
@@ -571,6 +575,10 @@ public class Tablero {
                 case 1: //Colocación hacia arriba
                     nc=columna;
                     nf=fila;
+                    System.out.println("Barco tamaño: " + size);
+                    System.out.println("Fila random: " + fila);
+                    System.out.println("Columna random: " + columna);
+                    System.out.println("Intento: " + intento);
                     for(int i=0;i<size;i++){
                         esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
@@ -594,8 +602,10 @@ public class Tablero {
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
+                        
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nf+=1;
                         }else{
                             break;
@@ -614,8 +624,9 @@ public class Tablero {
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nf-=1;
                             nc-=1;
                         }else{
@@ -636,8 +647,9 @@ public class Tablero {
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nf+=1;
                             nc+=1;
                         }else{
@@ -658,8 +670,9 @@ public class Tablero {
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nf-=1;
                             nc+=1;
                         }else{
@@ -680,8 +693,9 @@ public class Tablero {
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nf+=1;
                             nc-=1;
                         }else{
@@ -702,8 +716,9 @@ public class Tablero {
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nc+=1;
                         }else{
                             break;
@@ -723,8 +738,9 @@ public class Tablero {
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nc-=1;
                         }else{
                             break;
