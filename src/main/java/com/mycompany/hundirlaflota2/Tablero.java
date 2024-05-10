@@ -41,7 +41,7 @@ public class Tablero {
         this.columna= c;
         this.fila=f;
         
-        this.municion=30;//Munición temporal para poder hacer pruebas
+        this.municion=3000;//Munición temporal para poder hacer pruebas
         
         //this.municion=(columna*fila)/3;//Calculamos la munición disponible
         this.tablero = new char [f][c];
@@ -329,50 +329,183 @@ public class Tablero {
   
     public boolean comprobarColocacion(int fila, int columna){
         boolean esPosible=false;
+        boolean esDentro=false;
         int intento=10;
         
         while(intento>0 && esPosible!=true){
-            if(columna>=0 && fila>=0){
-                esPosible=true;
-            }else{
-                esPosible=false;
-                intento--;
+            //-- CREAR FUNCION para espacios entre medias
+            
+            
+            
+            esDentro=esDentro(fila,columna);
+            if(esDentro==false){//Si es dentro es false(Esta fuera del tablero) rompe la ejecución
+                break;
             }
-            if(this.tablero[fila][columna]!='B'){
-                esPosible=true;
+            
+            esPosible=hayBarco(fila,columna);
+            
+            if(hayBarco(fila,columna)==true){//si hay barco en esa posición rompe la ejecución si no lo hubiera cambia es posible a true
+                break;
             }else{
-                esPosible=false;
-                intento--;
+                esPosible=true;
             }
-            if(columna<this.columna && fila<this.fila){
+            
+            esPosible=comprobarAlrededor(fila,columna);
+            
+            /*if(this.tablero[fila][columna]!='B'){
                 esPosible=true;
             }else{
                 esPosible=false;
-                intento--;
-        }
+                break;
+            }*/
+            
         }
         
         return esPosible;
     }
     
-    public void colocarBarcos(int size){
+    private boolean hayBarco(int fila, int columna){
+        boolean hayBarco=false;
+        
+        if(this.tablero[fila][columna]!='B'){
+                hayBarco=true;
+            }else{
+                hayBarco=false;
+            }
+        
+        return hayBarco;
+    }
+    private boolean esDentro(int fila, int columna){//Comprueba si esta dentro del tablero
+        boolean esDentro=false;
+        if(columna>=0 && fila>=0){
+            esDentro=true;
+        }else{
+            esDentro=false;       
+        }
+        if(columna<this.columna && fila<this.fila && esDentro!=false){
+            esDentro=true;
+        }else{
+            esDentro=false;
+        }
+        
+        return esDentro;
+    }
+    
+    
+    
+    private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes
+        boolean esPosible=true;
+        
+        
+        //filas superior
+        if(esPosible==true){
+            esPosible=esDentro(fila-1, columna-1);
+            
+        }
+        if(esPosible==true){
+            esPosible=hayBarco(fila-1,columna-1);
+        }
+        
+        //fila superior
+        if (esPosible == true) {
+            esPosible = esDentro(fila - 1, columna);
+
+        }
+        if (esPosible == true) {
+            esPosible = hayBarco(fila - 1, columna);
+        }
+        
+        //fila superior
+        if(esPosible==true){
+            esPosible=esDentro(fila-1, columna+1);
+            
+        }
+        if(esPosible==true){
+            esPosible=hayBarco(fila-1,columna+1);
+        }
+        
+
+        //fila seleccionada
+        if(esPosible==true){
+            esPosible=esDentro(fila, columna-1);
+            
+        }
+        if(esPosible==true){
+            esPosible=hayBarco(fila,columna-1);
+        }
+        
+        //fila seleccionada / CASILLA SELECCIONADA
+        if(esPosible==true){
+            esPosible=esDentro(fila, columna);
+            
+        }
+        if(esPosible==true){
+            esPosible=hayBarco(fila,columna);
+        }
+        
+        //fila seleccionada
+        if(esPosible==true){
+            esPosible=esDentro(fila, columna+1);
+            
+        }
+        if(esPosible==true){
+            esPosible=hayBarco(fila,columna+1);
+        }
+
+        //fila inferior
+        if(esPosible==true){
+            esPosible=esDentro(fila+1, columna-1);
+            
+        }
+        if(esPosible==true){
+            esPosible=hayBarco(fila+1,columna-1);
+        }
+        
+        //fila inferior
+        if(esPosible==true){
+            esPosible=esDentro(fila+1, columna);
+            
+        }
+        if(esPosible==true){
+            esPosible=hayBarco(fila+1,columna);
+        }
+        
+        //fila inferior
+        if(esPosible==true){
+            esPosible=esDentro(fila+1, columna+1);
+            
+        }
+        if(esPosible==true){
+            esPosible=hayBarco(fila+1,columna+1);
+        }
+        
+        
+        return esPosible;
+    }
+    
+    public boolean colocarBarcos(int size){
         
         int intento=10;
         boolean esPosible=true;
-        int opt=1;//(int) (Math.random()*8+1);
-        int columna=(int) (Math.random()*(this.columna-1));
-        int fila=(int) (Math.random()*(this.fila-1));
-        int nc,nf;
+        boolean colocado=false;
+                int nc,nf;
         
-        //while(intento>0){
+        while(intento>0 && colocado==false){
+            int opt=1;//(int) (Math.random()*8+1);
+            int columna=(int) (Math.random()*(this.columna-1));
+            int fila=(int) (Math.random()*(this.fila-1));
+
+            
+        
             switch(opt){
 
                 case 1: //Colocación hacia arriba
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
+                        esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
-                            esPosible=comprobarColocacion(nf, nc);
+                            
                             nf-=1;
                         }else{
                             break;
@@ -384,6 +517,7 @@ public class Tablero {
                             this.tablero[fila][columna]='B';
                             fila-=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
@@ -538,13 +672,19 @@ public class Tablero {
                     
                     break;
             }
-        //}
-        colocarAgua();
+            
+            if (esPosible==false){
+                intento--;
+            }
+        }
+        //colocarAgua();
+        
+        return esPosible;
     }
     
     //METODO COLOCACIÓN AGUA
     
-    private void colocarAgua(){
+    public void colocarAgua(){
         for (int i=0;i<tablero.length;i++){
             for (int j=0;j<tablero[i].length;j++){
                 if(tablero[i][j]!='B'){

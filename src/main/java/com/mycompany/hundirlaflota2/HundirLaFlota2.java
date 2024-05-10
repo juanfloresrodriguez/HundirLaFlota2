@@ -18,6 +18,7 @@ public class HundirLaFlota2 {
         int columna, fila;
         int opt=0;
         int municion;
+        boolean esPosible=true;
         
         System.out.println("Introduzca el ancho del tablero:");
         columna=sc.nextInt();
@@ -28,13 +29,21 @@ public class HundirLaFlota2 {
         
         Tablero t = new Tablero(fila, columna);
         
-        t.colocarBarcos(4);
-        t.colocarBarcos(3);
-        t.colocarBarcos(3);
-        t.colocarBarcos(2);
-        t.colocarBarcos(2);
-        t.colocarBarcos(1);
-        t.colocarBarcos(1);
+        esPosible=t.colocarBarcos(4);
+        esPosible=t.colocarBarcos(3);
+        esPosible=t.colocarBarcos(3);
+        esPosible=t.colocarBarcos(2);
+        esPosible=t.colocarBarcos(2);
+        esPosible=t.colocarBarcos(1);
+        esPosible=t.colocarBarcos(1);
+        if(esPosible!=true){//si no es posible colocar los barcos interumpe la ejecución del programa si es posible la colocación colocará el agua
+            System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
+            System.exit(0);
+        }else{
+            t.colocarAgua();
+        }
+        
+        
         municion=t.getMunicion();
         
         //MENU DE ACCIONES
@@ -89,6 +98,8 @@ public class HundirLaFlota2 {
         }
         if (municion<0){
             System.out.println("Game Over: Te has quedado sin munición");
+        }else if (opt==-1){
+            System.out.println("Has salido de la partida");
         }else{
             System.out.println("Has Ganado. Hundiste todos los barcos");
         }
