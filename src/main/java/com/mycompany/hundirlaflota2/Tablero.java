@@ -334,11 +334,11 @@ public class Tablero {
         boolean esPosible=true;
         //boolean esDentro=false;
         boolean alrededor=false;
-        int intento=10;
+        //int intento=10;
         
-        while(intento>0 && esPosible==true){
-            //-- CREAR FUNCION para espacios entre medias
-            
+        //while(intento>0 && esPosible==true){
+
+        while(esPosible==true){
             
             
             esPosible=esDentro(fila,columna);
@@ -359,17 +359,11 @@ public class Tablero {
             if(alrededor==false){
                 esPosible=false;
             }
-            
-            /*if(this.tablero[fila][columna]!='B'){
-                esPosible=true;
-            }else{
-                esPosible=false;
-                break;
-            }*/
+
             if (esPosible==true){
                 break;
             }else{
-                intento--;
+                //intento--;
             }
         }
         
@@ -405,166 +399,96 @@ public class Tablero {
     
     
     
-    private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes
-        boolean esPosible=true;
-        
-        
+    private boolean comprobarAlrededor(int fila, int columna) {//comprueba la posibilidad de colocación en las casillas adyacentes
+        boolean esPosible = true;
+
+
         //filas superior
-        if(esPosible==true){
-            esPosible=esDentro(fila-1, columna-1);
-            
+        if (esPosible == true) {
+            esPosible = esDentro(fila - 1, columna - 1);
+
         }
-        if(esPosible==true && hayBarco(fila-1,columna-1)==true){
-            esPosible=false;
+        if (esPosible == true && hayBarco(fila - 1, columna - 1) == true) {
+            esPosible = false;
         }
-        
+
         //fila superior
         if (esPosible == true) {
             esPosible = esDentro(fila - 1, columna);
 
         }
-        if (esPosible == true && hayBarco(fila - 1, columna)==true) {
+        if (esPosible == true && hayBarco(fila - 1, columna) == true) {
             esPosible = false;
         }
-        
+
         //fila superior
-        if(esPosible==true){
-            esPosible=esDentro(fila-1, columna+1);
-            
+        if (esPosible == true) {
+            esPosible = esDentro(fila - 1, columna + 1);
+
         }
-        if(esPosible==true && hayBarco(fila-1,columna+1)==true){
-            esPosible=false;
+        if (esPosible == true && hayBarco(fila - 1, columna + 1) == true) {
+            esPosible = false;
         }
-        
+
 
         //fila seleccionada
-        if(esPosible==true){
-            esPosible=esDentro(fila, columna-1);
-            
+        if (esPosible == true) {
+            esPosible = esDentro(fila, columna - 1);
+
         }
-        if(esPosible==true && hayBarco(fila,columna-1)==true){
-            esPosible=false;
+        if (esPosible == true && hayBarco(fila, columna - 1) == true) {
+            esPosible = false;
         }
-        
-        //fila seleccionada / CASILLA SELECCIONADA
-        //if(esPosible==true){
-        //    esPosible=esDentro(fila, columna);
-        //    
-        //}
-        //if(esPosible==true){
-        //    esPosible=hayBarco(fila,columna);
-        //}
-        
+
         //fila seleccionada
-        if(esPosible==true){
-            esPosible=esDentro(fila, columna+1);
-            
+        if (esPosible == true) {
+            esPosible = esDentro(fila, columna + 1);
+
         }
-        if(esPosible==true && hayBarco(fila,columna+1)==true){
-            esPosible=false;
+        if (esPosible == true && hayBarco(fila, columna + 1) == true) {
+            esPosible = false;
         }
 
         //fila inferior
-        if(esPosible==true){
-            esPosible=esDentro(fila+1, columna-1);
-            
+        if (esPosible == true) {
+            esPosible = esDentro(fila + 1, columna - 1);
+
         }
-        if(esPosible==true && hayBarco(fila+1,columna-1)==true){
-            esPosible=false;
+        if (esPosible == true && hayBarco(fila + 1, columna - 1) == true) {
+            esPosible = false;
         }
-        
+
         //fila inferior
-        if(esPosible==true){
-            esPosible=esDentro(fila+1, columna);
-            
+        if (esPosible == true) {
+            esPosible = esDentro(fila + 1, columna);
+
         }
-        if(esPosible==true && hayBarco(fila+1,columna)==true){
-            esPosible=false;
+        if (esPosible == true && hayBarco(fila + 1, columna) == true) {
+            esPosible = false;
         }
-        
+
         //fila inferior
-        if(esPosible==true){
-            esPosible=esDentro(fila+1, columna+1);
-            
+        if (esPosible == true) {
+            esPosible = esDentro(fila + 1, columna + 1);
+
         }
-        if(esPosible==true && hayBarco(fila+1,columna+1)==true){
-            esPosible=false;
+        if (esPosible == true && hayBarco(fila + 1, columna + 1) == true) {
+            esPosible = false;
         }
-        
-        
+
+
         return esPosible;
     }
-    
-    
-    //NUEVO COMPROBARALREDEDOR
-    
-    /*private boolean comprobarAlrededor(int fila, int columna){//comprueba la posibilidad de colocación en las casillas adyacentes SIN ESDENTRO()
-        boolean esPosible=true;
-        
-        
-        //filas superior
-        if(esPosible==true && hayBarco(fila-1,columna-1)==true){
-            esPosible=false;
-        }
-        
-        //fila superior
-        if(esPosible==true && hayBarco(fila-1,columna)==true){
-            esPosible=false;
-        }
-        
-        //fila superior
-        if(esPosible==true && hayBarco(fila-1,columna+1)==true){
-            esPosible=false;
-        }
-        
-
-        //fila seleccionada
-        if(esPosible==true && hayBarco(fila,columna-1)==true){
-            esPosible=false;
-        }
-        
-        //fila seleccionada / CASILLA SELECCIONADA
-        //if(esPosible==true){
-        //    esPosible=esDentro(fila, columna);
-        //    
-        //}
-        //if(esPosible==true){
-        //    esPosible=hayBarco(fila,columna);
-        //}
-        
-        //fila seleccionada
-        if(esPosible==true && hayBarco(fila,columna+1)==true){
-            esPosible=false;
-        }
-
-        //fila inferior
-        if(esPosible==true && hayBarco(fila+1,columna-1)==true){
-            esPosible=false;
-        }
-        
-        //fila inferior
-        if(esPosible==true && hayBarco(fila+1,columna)==true){
-            esPosible=false;
-        }
-        
-        //fila inferior
-        if(esPosible==true && hayBarco(fila+1,columna+1)==true){
-            esPosible=false;
-        }
-        
-        
-        return esPosible;
-    }*/
    
     public boolean colocarBarcos(int size){
         
         int intento=10;
         boolean esPosible=true;
         boolean colocado=false;
-                int nc,nf;
+        int nc,nf;
         
         while(intento>0 && colocado==false){
-            int opt=1;//(int) (Math.random()*8+1);
+            int opt=(int) (Math.random()*8+1);
             int columna=(int) (Math.random()*(this.columna-1));
             int fila=(int) (Math.random()*(this.fila-1));
 
@@ -575,10 +499,7 @@ public class Tablero {
                 case 1: //Colocación hacia arriba
                     nc=columna;
                     nf=fila;
-                    System.out.println("Barco tamaño: " + size);
-                    System.out.println("Fila random: " + fila);
-                    System.out.println("Columna random: " + columna);
-                    System.out.println("Intento: " + intento);
+
                     for(int i=0;i<size;i++){
                         esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
@@ -607,7 +528,7 @@ public class Tablero {
                         if(esPosible==true){
                             
                             nf+=1;
-                        }else{
+                        }else {
                             break;
                         }
                     }
@@ -617,6 +538,7 @@ public class Tablero {
                             this.tablero[fila][columna]='B';
                             fila+=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
@@ -640,6 +562,7 @@ public class Tablero {
                             fila-=1;
                             columna-=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
@@ -652,7 +575,7 @@ public class Tablero {
                             
                             nf+=1;
                             nc+=1;
-                        }else{
+                        }else {
                             break;
                         }
                     }
@@ -663,6 +586,7 @@ public class Tablero {
                             fila+=1;
                             columna+=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
@@ -686,6 +610,7 @@ public class Tablero {
                             fila-=1;
                             columna+=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
@@ -709,6 +634,7 @@ public class Tablero {
                             fila+=1;
                             columna-=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
@@ -731,6 +657,7 @@ public class Tablero {
                             
                             columna+=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
@@ -753,17 +680,27 @@ public class Tablero {
                             
                             columna-=1;
                         }
+                        colocado=true;
                     }
                     
                     break;
             }
+
+            //ParaComprobar
+            System.out.println("Barco tamaño: " + size);
+            System.out.println("Fila random: " + fila);
+            System.out.println("Columna random: " + columna);
+            System.out.println("Intento: " + intento);
             
             if (esPosible==false){
                 intento--;
             }
         }
         //colocarAgua();
-        
+        if(intento<=0){
+            System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
+            System.exit(0);
+        }
         return esPosible;
     }
     
