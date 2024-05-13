@@ -18,30 +18,42 @@ public class HundirLaFlota2 {
         int columna, fila;
         int opt=0;
         int municion;
+        int [] tam= {4,3,3,2,2,1,1};
         boolean esPosible=true;
         
-        System.out.println("Introduzca el ancho del tablero:");
-        columna=sc.nextInt();
-        System.out.println("Introduzca el largo del tablero:");
-        fila=sc.nextInt();
+//        System.out.println("Introduzca el ancho del tablero:");
+//        columna=sc.nextInt();
+//        System.out.println("Introduzca el largo del tablero:");
+//        fila=sc.nextInt();
         
         //Iniciamos el tablero
         
-        Tablero t = new Tablero(fila, columna);
-        
-        esPosible=t.colocarBarcos(4);
-        esPosible=t.colocarBarcos(3);
-        esPosible=t.colocarBarcos(3);
-        esPosible=t.colocarBarcos(2);
-        esPosible=t.colocarBarcos(2);
-        esPosible=t.colocarBarcos(1);
-        esPosible=t.colocarBarcos(1);
-        if(esPosible!=true){//si no es posible colocar los barcos interumpe la ejecución del programa si es posible la colocación colocará el agua
-            System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
-            System.exit(0);
-        }else{
-            t.colocarAgua();
+        //Tablero t = new Tablero(fila, columna);
+        Tablero t = new Tablero(9, 9);
+
+        for(int i=0;i<tam.length;i++){//Colocación de barcos con la comprobación de si es posible correctamente aplicada
+            esPosible=t.colocarBarcos(tam[i]);
+            if(esPosible==false){//si no es posible colocar los barcos interumpe la ejecución del programa si es posible la colocación colocará el agua
+                System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
+                System.exit(0);
+            }else{
+                t.colocarAgua();
+            }
         }
+
+//        esPosible=t.colocarBarcos(4);
+//        esPosible=t.colocarBarcos(3);
+//        esPosible=t.colocarBarcos(3);
+//        esPosible=t.colocarBarcos(2);
+//        esPosible=t.colocarBarcos(2);
+//        esPosible=t.colocarBarcos(1);
+//        esPosible=t.colocarBarcos(1);
+//        if(esPosible==false){//si no es posible colocar los barcos interumpe la ejecución del programa si es posible la colocación colocará el agua
+//            System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
+//            System.exit(0);
+//        }else{
+//            t.colocarAgua();
+//        }
         
         
         municion=t.getMunicion();

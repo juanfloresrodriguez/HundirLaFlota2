@@ -697,10 +697,10 @@ public class Tablero {
             }
         }
         //colocarAgua();
-        if(intento<=0){
-            System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
-            System.exit(0);
-        }
+//        if(intento<=0){
+//            System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
+//            System.exit(0);
+//        }
         return esPosible;
     }
     
