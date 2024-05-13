@@ -20,20 +20,22 @@ public class HundirLaFlota2 {
         int municion;
         int [] tam= {4,3,3,2,2,1,1};
         boolean esPosible=true;
-        
-//        System.out.println("Introduzca el ancho del tablero:");
-//        columna=sc.nextInt();
-//        System.out.println("Introduzca el largo del tablero:");
-//        fila=sc.nextInt();
+        boolean barcos=true;
+
+        System.out.println("Introduzca el ancho del tablero:");
+        columna=sc.nextInt();
+        System.out.println("Introduzca el largo del tablero:");
+        fila=sc.nextInt();
         
         //Iniciamos el tablero
         
-        //Tablero t = new Tablero(fila, columna);
-        Tablero t = new Tablero(9, 9);
+        Tablero t = new Tablero(fila, columna);
+        //Tablero t = new Tablero(12, 15);
 
         for(int i=0;i<tam.length;i++){//Colocación de barcos con la comprobación de si es posible correctamente aplicada
             esPosible=t.colocarBarcos(tam[i]);
             if(esPosible==false){//si no es posible colocar los barcos interumpe la ejecución del programa si es posible la colocación colocará el agua
+                System.out.println(i);
                 System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
                 System.exit(0);
             }else{
@@ -55,12 +57,11 @@ public class HundirLaFlota2 {
 //            t.colocarAgua();
 //        }
         
-        
         municion=t.getMunicion();
         
         //MENU DE ACCIONES
         
-        while(municion>0){
+        while(municion>0 && barcos==true){
             t.mostrarTablero();
             
             System.out.println("¿Qué desea hacer?: ");
@@ -76,27 +77,27 @@ public class HundirLaFlota2 {
                 case 1:
                     t.disparoNormal();
                     municion=t.getMunicion();
-                     
+
                     break;
                 case 2:
                     t.disparoBarrena();
                     municion=t.getMunicion();
-                    
+
                     break;
                 case 3:
                     t.disparoAtomico();
                     municion=t.getMunicion();
-                     
+
                     break;
                 case 4:
                     t.pista();
                     municion=t.getMunicion();
-                     
+
                     break;
                 case 5:
                     t.flash();
                     municion=t.getMunicion();
-                     
+
                     break;
                 default:
                     System.out.println("No existe. Vuelva a intentarlo");
@@ -106,7 +107,7 @@ public class HundirLaFlota2 {
                 System.out.println("Partida finalizada por el jugador");
                 break;
             }
-            
+            barcos=t.quedanBarcos();
         }
         if (municion<0){
             System.out.println("Game Over: Te has quedado sin munición");
@@ -115,6 +116,6 @@ public class HundirLaFlota2 {
         }else{
             System.out.println("Has Ganado. Hundiste todos los barcos");
         }
-        
+
     }
 }

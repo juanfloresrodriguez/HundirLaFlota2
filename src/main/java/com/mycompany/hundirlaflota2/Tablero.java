@@ -110,9 +110,11 @@ public class Tablero {
         }
         
         System.out.println("Munición restante: " + municion);
-    
+
     }
-    
+
+
+
     private void cambiarCasilla(int f, int c){
         /*
         Comprueba si la casilla seleccionada por el usuario ya ha sido diparada
@@ -327,7 +329,25 @@ public class Tablero {
             System.out.println("Error al limpiar la pantalla"+e.getMessage());//si no es capaz de limpiar la pantalla salta este mensaje
         }
     }
-    
+
+    //CONTAR CUANTOS BARCOS QUEDAN PARA ACABAR PARTIDA
+    public boolean quedanBarcos(){
+        boolean quedan=false;
+        int cont=0;
+
+        for(int i=0;i<tablero.length;i++){
+            for(int j=0;j<tablero[i].length;j++){
+                if(tablero[i][j]=='B'){
+                    cont++;
+                }
+            }
+        }
+        if(cont>0){
+            quedan=true;
+        }
+        return quedan;
+    }
+
     //COLOCACION AUTOMATICA DE LOS BARCOS
   
     public boolean comprobarColocacion(int fila, int columna){
@@ -479,7 +499,7 @@ public class Tablero {
 
         return esPosible;
     }
-   
+
     public boolean colocarBarcos(int size){
         
         int intento=10;
