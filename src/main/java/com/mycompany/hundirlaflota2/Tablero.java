@@ -422,77 +422,105 @@ public class Tablero {
     private boolean comprobarAlrededor(int fila, int columna) {//comprueba la posibilidad de colocación en las casillas adyacentes
         boolean esPosible = true;
 
-
         //filas superior
-        if (esPosible == true) {
-            esPosible = esDentro(fila - 1, columna - 1);
+//        if (esPosible == true) {
+//            esPosible = esDentro(fila - 1, columna - 1);
+//
+//        }
+//        if (esPosible == true && hayBarco(fila - 1, columna - 1) == true) {
+//            esPosible = false;
+//        }
 
+        if (esDentro(fila-1, columna-1) && hayBarco(fila-1, columna-1)){
+            esPosible=false;
         }
-        if (esPosible == true && hayBarco(fila - 1, columna - 1) == true) {
-            esPosible = false;
+        //fila superior
+//        if (esPosible == true) {
+//            esPosible = esDentro(fila - 1, columna);
+//
+//        }
+//        if (esPosible == true && hayBarco(fila - 1, columna) == true) {
+//            esPosible = false;
+//        }
+        if(esPosible==true && esDentro(fila-1,columna) && hayBarco(fila-1,columna)){
+            esPosible=false;
         }
 
         //fila superior
-        if (esPosible == true) {
-            esPosible = esDentro(fila - 1, columna);
+//        if (esPosible == true) {
+//            esPosible = esDentro(fila - 1, columna + 1);
+//
+//        }
+//        if (esPosible == true && hayBarco(fila - 1, columna + 1) == true) {
+//            esPosible = false;
+//        }
 
-        }
-        if (esPosible == true && hayBarco(fila - 1, columna) == true) {
-            esPosible = false;
-        }
-
-        //fila superior
-        if (esPosible == true) {
-            esPosible = esDentro(fila - 1, columna + 1);
-
-        }
-        if (esPosible == true && hayBarco(fila - 1, columna + 1) == true) {
-            esPosible = false;
-        }
-
-
-        //fila seleccionada
-        if (esPosible == true) {
-            esPosible = esDentro(fila, columna - 1);
-
-        }
-        if (esPosible == true && hayBarco(fila, columna - 1) == true) {
+        if(esPosible==true && esDentro(fila-1, columna+1) && hayBarco(fila-1, columna+1)){
             esPosible = false;
         }
 
         //fila seleccionada
-        if (esPosible == true) {
-            esPosible = esDentro(fila, columna + 1);
+//        if (esPosible == true) {
+//            esPosible = esDentro(fila, columna - 1);
+//
+//        }
+//        if (esPosible == true && hayBarco(fila, columna - 1) == true) {
+//            esPosible = false;
+//        }
 
+        if(esPosible==true && esDentro(fila, columna -1) && hayBarco(fila,columna-1)){
+            esPosible = false;
         }
-        if (esPosible == true && hayBarco(fila, columna + 1) == true) {
+
+        //fila seleccionada
+//        if (esPosible == true) {
+//            esPosible = esDentro(fila, columna + 1);
+//
+//        }
+//        if (esPosible == true && hayBarco(fila, columna + 1) == true) {
+//            esPosible = false;
+//        }
+
+        if(esPosible==true && esDentro(fila,columna+1) && hayBarco(fila,columna+1)){
             esPosible = false;
         }
 
         //fila inferior
-        if (esPosible == true) {
-            esPosible = esDentro(fila + 1, columna - 1);
+//        if (esPosible == true) {
+//            esPosible = esDentro(fila + 1, columna - 1);
+//
+//        }
+//        if (esPosible == true && hayBarco(fila + 1, columna - 1) == true) {
+//            esPosible = false;
+//        }
 
-        }
-        if (esPosible == true && hayBarco(fila + 1, columna - 1) == true) {
+        if(esPosible==true && esDentro(fila+1, columna-1) && hayBarco(fila+1,columna-1)){
             esPosible = false;
         }
 
         //fila inferior
-        if (esPosible == true) {
-            esPosible = esDentro(fila + 1, columna);
+//        if (esPosible == true) {
+//            esPosible = esDentro(fila + 1, columna);
+//
+//        }
+//        if (esPosible == true && hayBarco(fila + 1, columna) == true) {
+//            esPosible = false;
+//        }
 
-        }
-        if (esPosible == true && hayBarco(fila + 1, columna) == true) {
+        if(esPosible == true && esDentro(fila + 1, columna) && hayBarco(fila + 1, columna)) {
             esPosible = false;
         }
 
         //fila inferior
-        if (esPosible == true) {
-            esPosible = esDentro(fila + 1, columna + 1);
+//        if (esPosible == true) {
+//            esPosible = esDentro(fila + 1, columna + 1);
+//
+//        }
+//        if (esPosible == true && hayBarco(fila + 1, columna + 1) == true) {
+//            esPosible = false;
+//        }
 
-        }
-        if (esPosible == true && hayBarco(fila + 1, columna + 1) == true) {
+        if(esPosible==true && esDentro(fila + 1, columna + 1) && hayBarco(fila+1,columna+1)) {
             esPosible = false;
         }
 
@@ -508,12 +536,11 @@ public class Tablero {
         int nc,nf;
         
         while(intento>0 && colocado==false){
-            int opt=(int) (Math.random()*8+1);
+            int opt=1;//(int) (Math.random()*8+1);
             int columna=(int) (Math.random()*(this.columna-1));
             int fila=(int) (Math.random()*(this.fila-1));
 
-            
-        
+
             switch(opt){
 
                 case 1: //Colocación hacia arriba
@@ -706,11 +733,16 @@ public class Tablero {
                     break;
             }
 
+            //if(size==1){
+                System.out.println("Fila: " + fila);
+                System.out.println("Columna: " + columna);
+                System.out.println("intento: " + intento);
+            //}
             //ParaComprobar
-            System.out.println("Barco tamaño: " + size);
-            System.out.println("Fila random: " + fila);
-            System.out.println("Columna random: " + columna);
-            System.out.println("Intento: " + intento);
+//            System.out.println("Barco tamaño: " + size);
+//            System.out.println("Fila random: " + fila);
+//            System.out.println("Columna random: " + columna);
+//            System.out.println("Intento: " + intento);
             
             if (esPosible==false){
                 intento--;
