@@ -19,7 +19,7 @@ public class HundirLaFlota2 {
         int opt=0;
         int municion;
         int [] tam= {4,3,3,2,2,1,1};
-        boolean esPosible=true;
+        boolean esPosible;
         boolean barcos=true;
 
         System.out.println("Introduzca el ancho del tablero:");
