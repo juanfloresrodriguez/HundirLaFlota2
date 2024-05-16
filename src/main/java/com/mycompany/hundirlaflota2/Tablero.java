@@ -394,9 +394,9 @@ public class Tablero {
         boolean resul=false;
         
         if(this.tablero[fila][columna]=='B'){
-                resul=true;
-            }else{
                 resul=false;
+            }else{
+                resul=true;
             }
         
         return resul;
