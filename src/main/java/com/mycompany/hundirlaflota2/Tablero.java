@@ -19,21 +19,7 @@ public class Tablero {
     private int fila;
     private boolean bandera=true;//Cuando bandera sea false no se podrá seguir atacando y la partida habrá acabado
     private int municion;
-    //Tablero iniciado staticamente para pruebas de disparos
-    /*private char tablero[][] =  {
-                                    {'A','A','B','B','B','B','A','A','A','A'}, 
-                                    {'A','A','A','A','A','A','A','A','B','A'}, 
-                                    {'A','A','A','A','A','A','A','B','A','A'}, 
-                                    {'A','A','A','A','B','A','A','A','A','A'}, 
-                                    {'A','A','B','A','A','B','A','A','A','A'}, 
-                                    {'A','B','A','A','A','A','B','A','A','A'}, 
-                                    {'B','A','A','A','A','A','A','A','B','A'}, 
-                                    {'A','A','A','B','A','B','A','A','B','A'}, 
-                                    {'A','A','A','A','A','A','A','A','A','A'},
-                                    {'A','A','A','A','A','A','A','A','A','A'}
-                                };
-    */
-    private char tablero[][];
+    private char[][] tablero;
     
     
     
@@ -106,7 +92,7 @@ public class Tablero {
                 }
             }
             System.out.println();
-            
+
         }
         
         System.out.println("Munición restante: " + municion);
@@ -291,7 +277,6 @@ public class Tablero {
             
             
             Thread.sleep(500);//Paraliza en milisegundos el tiempo establecido
-            //--Implementar sistema que limpie la pantalla
             clearConsole();
             
             
@@ -304,7 +289,7 @@ public class Tablero {
     
     
     //LIMPIAR CONSOLA
-    public final static void clearConsole(){
+    public static void clearConsole(){
           try 
         {
             String sistemaOperativo = System.getProperty("os.name");
@@ -352,11 +337,11 @@ public class Tablero {
   
     public boolean comprobarColocacion(int fila, int columna){
         boolean esPosible=true;
-        //boolean esDentro=false;
-        boolean alrededor=false;
-        //int intento=10;
+
+        boolean alrededor;
+
         
-        //while(intento>0 && esPosible==true){
+
 
         while(esPosible==true){
             
@@ -382,8 +367,6 @@ public class Tablero {
 
             if (esPosible==true){
                 break;
-            }else{
-                //intento--;
             }
         }
         
@@ -391,18 +374,18 @@ public class Tablero {
     }
     
     private boolean hayBarco(int fila, int columna){
-        boolean resul=false;
-        
+        boolean resul;
+
         if(this.tablero[fila][columna]=='B'){
-                resul=false;
-            }else{
-                resul=true;
-            }
+            resul=false;
+        }else{
+            resul=true;
+        }
         
         return resul;
     }
     private boolean esDentro(int fila, int columna){//Comprueba si esta dentro del tablero
-        boolean esDentro=false;
+        boolean esDentro;
         if(columna>=0 && fila>=0){
             esDentro=true;
         }else{
@@ -423,107 +406,43 @@ public class Tablero {
         boolean esPosible = true;
 
         //filas superior
-//        if (esPosible == true) {
-//            esPosible = esDentro(fila - 1, columna - 1);
-//
-//        }
-//        if (esPosible == true && hayBarco(fila - 1, columna - 1) == true) {
-//            esPosible = false;
-//        }
-
         if (esDentro(fila-1, columna-1) && hayBarco(fila-1, columna-1)){
             esPosible=false;
         }
         //fila superior
-//        if (esPosible == true) {
-//            esPosible = esDentro(fila - 1, columna);
-//
-//        }
-//        if (esPosible == true && hayBarco(fila - 1, columna) == true) {
-//            esPosible = false;
-//        }
         if(esPosible==true && esDentro(fila-1,columna) && hayBarco(fila-1,columna)){
             esPosible=false;
         }
 
         //fila superior
-//        if (esPosible == true) {
-//            esPosible = esDentro(fila - 1, columna + 1);
-//
-//        }
-//        if (esPosible == true && hayBarco(fila - 1, columna + 1) == true) {
-//            esPosible = false;
-//        }
-
         if(esPosible==true && esDentro(fila-1, columna+1) && hayBarco(fila-1, columna+1)){
             esPosible = false;
         }
 
         //fila seleccionada
-//        if (esPosible == true) {
-//            esPosible = esDentro(fila, columna - 1);
-//
-//        }
-//        if (esPosible == true && hayBarco(fila, columna - 1) == true) {
-//            esPosible = false;
-//        }
-
         if(esPosible==true && esDentro(fila, columna -1) && hayBarco(fila,columna-1)){
             esPosible = false;
         }
 
         //fila seleccionada
-//        if (esPosible == true) {
-//            esPosible = esDentro(fila, columna + 1);
-//
-//        }
-//        if (esPosible == true && hayBarco(fila, columna + 1) == true) {
-//            esPosible = false;
-//        }
-
         if(esPosible==true && esDentro(fila,columna+1) && hayBarco(fila,columna+1)){
             esPosible = false;
         }
 
         //fila inferior
-//        if (esPosible == true) {
-//            esPosible = esDentro(fila + 1, columna - 1);
-//
-//        }
-//        if (esPosible == true && hayBarco(fila + 1, columna - 1) == true) {
-//            esPosible = false;
-//        }
-
         if(esPosible==true && esDentro(fila+1, columna-1) && hayBarco(fila+1,columna-1)){
             esPosible = false;
         }
 
         //fila inferior
-//        if (esPosible == true) {
-//            esPosible = esDentro(fila + 1, columna);
-//
-//        }
-//        if (esPosible == true && hayBarco(fila + 1, columna) == true) {
-//            esPosible = false;
-//        }
-
         if(esPosible == true && esDentro(fila + 1, columna) && hayBarco(fila + 1, columna)) {
             esPosible = false;
         }
 
         //fila inferior
-//        if (esPosible == true) {
-//            esPosible = esDentro(fila + 1, columna + 1);
-//
-//        }
-//        if (esPosible == true && hayBarco(fila + 1, columna + 1) == true) {
-//            esPosible = false;
-//        }
-
         if(esPosible==true && esDentro(fila + 1, columna + 1) && hayBarco(fila+1,columna+1)) {
             esPosible = false;
         }
-
 
         return esPosible;
     }
