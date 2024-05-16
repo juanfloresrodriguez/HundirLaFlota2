@@ -536,7 +536,7 @@ public class Tablero {
         int nc,nf;
         
         while(intento>0 && colocado==false){
-            int opt=1;//(int) (Math.random()*8+1);
+            int opt=(int) (Math.random()*8+1);
             int columna=(int) (Math.random()*(this.columna-1));
             int fila=(int) (Math.random()*(this.fila-1));
 
@@ -733,26 +733,12 @@ public class Tablero {
                     break;
             }
 
-            //if(size==1){
-                System.out.println("Fila: " + fila);
-                System.out.println("Columna: " + columna);
-                System.out.println("intento: " + intento);
-            //}
-            //ParaComprobar
-//            System.out.println("Barco tamaño: " + size);
-//            System.out.println("Fila random: " + fila);
-//            System.out.println("Columna random: " + columna);
-//            System.out.println("Intento: " + intento);
             
             if (esPosible==false){
                 intento--;
             }
         }
-        //colocarAgua();
-//        if(intento<=0){
-//            System.out.println("No ha sido posible la colocación de los barcos. Partida Abortada");
-//            System.exit(0);
-//        }
+
         return esPosible;
     }
     
