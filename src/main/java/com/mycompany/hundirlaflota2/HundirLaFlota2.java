@@ -22,17 +22,16 @@ public class HundirLaFlota2 {
         boolean esPosible=true;
         boolean barcos=true;
 
-//        System.out.println("Introduzca el ancho del tablero:");
-//        columna=sc.nextInt();
-//        System.out.println("Introduzca el largo del tablero:");
-//        fila=sc.nextInt();
+        System.out.println("Introduzca el ancho del tablero:");
+        columna=sc.nextInt();
+        System.out.println("Introduzca el largo del tablero:");
+        fila=sc.nextInt();
         
         //Iniciamos el tablero
-        
-        //Tablero t = new Tablero(fila, columna);
-        Tablero t = new Tablero(10, 10);
+        Tablero t = new Tablero(fila, columna);
+        //Tablero t = new Tablero(8, 8);
 
-        for(int i=0;i<1;i++){//Colocación de barcos con la comprobación de si es posible correctamente aplicada
+        for(int i=0;i<tam.length;i++){//Colocación de barcos con la comprobación de si es posible correctamente aplicada
             esPosible=t.colocarBarcos(tam[i]);
             if(esPosible==false){//si no es posible colocar los barcos interumpe la ejecución del programa si es posible la colocación colocará el agua
                 System.out.println(i);
