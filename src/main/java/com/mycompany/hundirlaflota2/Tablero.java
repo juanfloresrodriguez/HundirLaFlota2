@@ -97,31 +97,6 @@ public class Tablero {
             System.out.print('|');
             System.out.println();
         }
-//        for (int i = 0; i < tablero.length; i++) {
-//            System.out.print('|');
-//            for (int j = 0; j < tablero[i].length; j++) {
-//                switch (tablero[i][j]) {
-//                    case 'x':
-//                        //Cuando en el array haya una x será poque el ataque ha tocado un barco y mostrará B de barco
-//                        System.out.print("B");
-//                        System.out.print('|');
-//                        break;
-//                    case 'y':
-//                        //Cuando en el array haya una y será poque el ataque ha tocado agua y mostrará A de agua
-//                        System.out.print("A");
-//                        System.out.print('|');
-//                        break;
-//                    default:
-//                        //El resto significa que no han sido descubiertas esas casillas
-//                        System.out.print('~');
-//                        System.out.print('|');
-//                        break;
-//                }
-//            }
-//            System.out.println();
-
-//        }
-        
         System.out.println("Munición restante: " + municion);
 
     }
