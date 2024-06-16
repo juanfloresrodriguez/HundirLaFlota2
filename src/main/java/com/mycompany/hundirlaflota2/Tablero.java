@@ -27,9 +27,9 @@ public class Tablero {
         this.columna= c;
         this.fila=f;
         
-        this.municion=3000;//Munición temporal para poder hacer pruebas
+
         
-        //this.municion=(columna*fila)/3;//Calculamos la munición disponible
+        this.municion=(columna*fila)/3;//Calculamos la munición disponible
         this.tablero = new char [f][c];
     }
     
@@ -68,32 +68,59 @@ public class Tablero {
     public void mostrarTablero(){
     //Se mostrará el estado actual del tablero en blanco, conforme avanze la 
     //partida se irá modificando con las casillas bombardeadas
-        
-    //REPRESENTACIÓN MEDIANTE SWITCH(Cambio automático recomendado por NetBeans)
+
+        System.out.print("  ");  // Espacio para la esquina superior izquierda
+        for (int j = 0; j < tablero[0].length; j++) {
+            System.out.print(j + " ");
+        }
+        System.out.println();
+
         for (int i = 0; i < tablero.length; i++) {
-            System.out.print('|');
+            System.out.print(i + " ");  // Imprimir el número de fila
             for (int j = 0; j < tablero[i].length; j++) {
+                System.out.print('|');
                 switch (tablero[i][j]) {
                     case 'x':
-                        //Cuando en el array haya una x será poque el ataque ha tocado un barco y mostrará B de barco
+                        // Cuando en el array haya una x será porque el ataque ha tocado un barco y mostrará B de barco
                         System.out.print("B");
-                        System.out.print('|');
                         break;
                     case 'y':
-                        //Cuando en el array haya una y será poque el ataque ha tocado agua y mostrará A de agua
+                        // Cuando en el array haya una y será porque el ataque ha tocado agua y mostrará A de agua
                         System.out.print("A");
-                        System.out.print('|');
                         break;
                     default:
-                        //El resto significa que no han sido descubiertas esas casillas
+                        // El resto significa que no han sido descubiertas esas casillas
                         System.out.print('~');
-                        System.out.print('|');
                         break;
                 }
             }
+            System.out.print('|');
             System.out.println();
-
         }
+//        for (int i = 0; i < tablero.length; i++) {
+//            System.out.print('|');
+//            for (int j = 0; j < tablero[i].length; j++) {
+//                switch (tablero[i][j]) {
+//                    case 'x':
+//                        //Cuando en el array haya una x será poque el ataque ha tocado un barco y mostrará B de barco
+//                        System.out.print("B");
+//                        System.out.print('|');
+//                        break;
+//                    case 'y':
+//                        //Cuando en el array haya una y será poque el ataque ha tocado agua y mostrará A de agua
+//                        System.out.print("A");
+//                        System.out.print('|');
+//                        break;
+//                    default:
+//                        //El resto significa que no han sido descubiertas esas casillas
+//                        System.out.print('~');
+//                        System.out.print('|');
+//                        break;
+//                }
+//            }
+//            System.out.println();
+
+//        }
         
         System.out.println("Munición restante: " + municion);
 
@@ -133,11 +160,11 @@ public class Tablero {
         System.out.println("Introduzca la vertical: ");
         c=sc.nextInt();
         
-        if(municion>0){
+        if(municion>0 && esDentro(f,c)){
             this.municion--;
             cambiarCasilla(f,c);
         }else {
-            System.out.println("No tienes sufuciente munición");
+            System.out.println("No tiene suficiente munición O Has seleccionado una posición fuera del tablero.");
         }
     }
    
@@ -159,7 +186,7 @@ public class Tablero {
 
                 total=this.columna+2;//restamos el numero de columnas (Longitud de la fila) + 2
                 
-                if((this.municion - total)>0){//se puede disparar siempre que quede municion
+                if((this.municion - total)>0 && esDentro(opt, 1)){//se puede disparar siempre que quede municion
                     
                     for(int i=0;i<tablero[opt].length;i++){//Recorremos la fila seleccionda
                     cambiarCasilla(opt, i);//llamamos al metodo el cual se encarga de cambiar los valores
@@ -167,27 +194,27 @@ public class Tablero {
                     
                     this.municion-=total;
                 }else{
-                    System.out.println("No tiene suficiente munición.");
+                    System.out.println("No tiene suficiente munición O Has seleccionado una posición fuera del tablero.");
                     bandera=false;
                 }
-                
+
                 break;
                 
             case 2: //COLUMNA
 
-                System.out.println("¿Que fila deseas desas despejas?: *Las casillas empiezan en 0*");
+                System.out.println("¿Que columna deseas desas despejas?: *Las casillas empiezan en 0*");
                 opt=sc.nextInt();
                 
                 total=this.fila+2;//restamos el numero de filas (Longitud de la columna + 2
                 
-                if((this.municion - total)>0){//se puede disparar siempre que quede municion
+                if((this.municion - total)>0 && esDentro(1, opt)){//se puede disparar siempre que quede municion
                     this.municion-=total;
                     
                     for(int i=0;i<tablero.length;i++){
                         cambiarCasilla(i, opt);
                     }
                 }else{
-                    System.out.println("No tiene suficiente munición.");
+                    System.out.println("No tiene suficiente munición O Has seleccionado una posición fuera del tablero.");
                     bandera=false;
                 }
                 break;
@@ -198,18 +225,17 @@ public class Tablero {
     
     public void disparoAtomico(){
     //descubre una celda y todas sus adyacentes con un coste de 10 balas
- 
-        if((this.municion - 10)>0){//se puede disparar siempre que quede municion    
+        int f, c;
+
+        System.out.println("¿Qué casilla desea atacar?: *Las casillas empiezan en 0*");
+        System.out.println("Introduzca la horizontal: ");
+        f=sc.nextInt();
+        System.out.println("Introduzca la vertical: ");
+        c=sc.nextInt();
+
+        if((this.municion - 10)>0 && esDentro(f,c)){//se puede disparar siempre que quede municion
         //Preguntamos al usario las casillas a disparar y cambiamos de valor las adyacentes y la disparada
-            
-            int f, c;
-    
-            System.out.println("¿Qué casilla desea atacar?: *Las casillas empiezan en 0*");
-            System.out.println("Introduzca la horizontal: ");
-            f=sc.nextInt();
-            System.out.println("Introduzca la vertical: ");
-            c=sc.nextInt();
-            
+
             cambiarCasilla(f-1,c-1);//filas superior
             cambiarCasilla(f-1,c);//fila superior
             cambiarCasilla(f-1,c+1);//fila superior
@@ -223,8 +249,11 @@ public class Tablero {
             cambiarCasilla(f+1,c+1);//fila inferior
 
             this.municion-=10;
-        }else{
-            System.out.println("No tiene suficiente munición.");
+        } else if (!esDentro(f,c)){
+            System.out.println("Esa posición no esta dentro del tablero");
+            bandera=false;
+        } else{
+            System.out.println("No tiene suficiente munición ");
             bandera=false;
         }
     }

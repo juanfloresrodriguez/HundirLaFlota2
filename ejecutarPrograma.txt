@@ -1,0 +1,1 @@
+java -cp target/classes com.mycompany.hundirlaflota2.HundirLaFlota2
