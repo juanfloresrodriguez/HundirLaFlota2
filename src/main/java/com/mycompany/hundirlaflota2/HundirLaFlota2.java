@@ -93,7 +93,7 @@ public class HundirLaFlota2 {
             }
             barcos=t.quedanBarcos();
         }
-        if (municion<0){
+        if (municion<=0){
             System.out.println("Game Over: Te has quedado sin munición");
         }else if (opt==-1){
             System.out.println("Has salido de la partida");
