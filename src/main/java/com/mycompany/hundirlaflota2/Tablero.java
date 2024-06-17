@@ -26,9 +26,7 @@ public class Tablero {
     Tablero(int f, int c){
         this.columna= c;
         this.fila=f;
-        
 
-        
         this.municion=(columna*fila)/3;//Calculamos la munición disponible
         this.tablero = new char [f][c];
     }
@@ -65,8 +63,8 @@ public class Tablero {
     }
     
     
-    public void mostrarTablero(){
-    //Se mostrará el estado actual del tablero en blanco, conforme avanze la 
+    public void mostrarTablero() {
+    //Se mostrará el estado actual del tablero en blanco, conforme avance la
     //partida se irá modificando con las casillas bombardeadas
 
         System.out.print("  ");  // Espacio para la esquina superior izquierda
@@ -98,18 +96,14 @@ public class Tablero {
             System.out.println();
         }
         System.out.println("Munición restante: " + municion);
-
     }
 
-
-
-    private void cambiarCasilla(int f, int c){
+    private void cambiarCasilla(int f, int c) {
         /*
-        Comprueba si la casilla seleccionada por el usuario ya ha sido diparada
+        Comprueba si la casilla seleccionada por el usuario ya ha sido disparada
         o no en caso de no haber sido disparada se cambia el contenido de la misma
         para que mostrarTablero() pueda funcionar.
         */
-        
         if(f>=0 && c >= 0){ 
             if(this.tablero[f][c]=='B'){
                 this.tablero[f][c]='x';
@@ -127,8 +121,7 @@ public class Tablero {
     //Ataque normal resta 1 bala.
     //Despeja la casilla seleccionada.
         int f, c; //Creamos variables para recoger las casillas que vamos a disparar
-    
-    
+
         System.out.println("¿Qué casilla desea atacar?: *Las casillas empiezan en 0*");
         System.out.println("Introduzca la horizontal: ");
         f=sc.nextInt();
@@ -144,7 +137,7 @@ public class Tablero {
     }
    
     
-    public void disparoBarrena(){
+    public void disparoBarrena() {
     //descubre una fila o columna completa con un coste equivalente al tamaño de
     //la fila o columna + 2 balas
         int opt, total;
@@ -159,12 +152,12 @@ public class Tablero {
                 System.out.println("¿Que fila deseas desas despejas?: *Las casillas empiezan en 0*");
                 opt=sc.nextInt();
 
-                total=this.columna+2;//restamos el numero de columnas (Longitud de la fila) + 2
+                total=this.columna+2;//restamos el número de columnas (Longitud de la fila) + 2
                 
                 if((this.municion - total)>0 && esDentro(opt, 1)){//se puede disparar siempre que quede municion
                     
-                    for(int i=0;i<tablero[opt].length;i++){//Recorremos la fila seleccionda
-                    cambiarCasilla(opt, i);//llamamos al metodo el cual se encarga de cambiar los valores
+                    for(int i=0;i<tablero[opt].length;i++){//Recorremos la fila seleccionada
+                    cambiarCasilla(opt, i);//llamamos al método el cual se encarga de cambiar los valores
                     }
                     
                     this.municion-=total;
@@ -180,7 +173,7 @@ public class Tablero {
                 System.out.println("¿Que columna deseas desas despejas?: *Las casillas empiezan en 0*");
                 opt=sc.nextInt();
                 
-                total=this.fila+2;//restamos el numero de filas (Longitud de la columna + 2
+                total=this.fila+2;//restamos el número de filas (Longitud de la columna + 2
                 
                 if((this.municion - total)>0 && esDentro(1, opt)){//se puede disparar siempre que quede municion
                     this.municion-=total;
@@ -199,7 +192,7 @@ public class Tablero {
     }
     
     public void disparoAtomico(){
-    //descubre una celda y todas sus adyacentes con un coste de 10 balas
+    //Descubre una celda y todas sus adyacentes con un coste de 10 balas
         int f, c;
 
         System.out.println("¿Qué casilla desea atacar?: *Las casillas empiezan en 0*");
@@ -209,7 +202,7 @@ public class Tablero {
         c=sc.nextInt();
 
         if((this.municion - 10)>0 && esDentro(f,c)){//se puede disparar siempre que quede municion
-        //Preguntamos al usario las casillas a disparar y cambiamos de valor las adyacentes y la disparada
+        //Preguntamos al usuario las casillas a disparar y cambiamos de valor las adyacentes y la disparada
 
             cambiarCasilla(f-1,c-1);//filas superior
             cambiarCasilla(f-1,c);//fila superior
@@ -234,13 +227,11 @@ public class Tablero {
     }
     
     public void pista(){
-    //muestra una parte de un barco con un coste de 15 balas
-    
+    //Muestra una parte de un barco con un coste de 15 balas
         boolean esPosible=false;
     
         if((this.municion -15)>0){//se puede usar siempre que quede municion
-            
-            
+
             for(int i=0;i<tablero.length;i++){
                     
                 for(int j=0;j<tablero[i].length;j++){
@@ -263,10 +254,10 @@ public class Tablero {
     }
     
     public void flash() throws InterruptedException{
-    //muestra el tablero completo durante medio segundo y lo oculta inmediatamente, con
+    //Muestra el tablero completo durante medio segundo y lo oculta inmediatamente, con
     //coste de 25 balas
     
-    //durante 0.5s y luego haga una limpieza de la pantalla para que no se pueda volver a ver
+    //durante 0.5 s y luego haga una limpieza de la pantalla para que no se pueda volver a ver
         if((this.municion -25)>0){//se puede usar siempre que quede municion
                 
             for (int i = 0; i < tablero.length; i++) {
@@ -279,11 +270,9 @@ public class Tablero {
                 System.out.println();
             }
             
-            
             Thread.sleep(500);//Paraliza en milisegundos el tiempo establecido
             clearConsole();
-            
-            
+
             this.municion-=25;
         }else{
             System.out.println("No tiene suficiente munición.");
@@ -294,8 +283,7 @@ public class Tablero {
     
     //LIMPIAR CONSOLA
     public static void clearConsole(){
-          try 
-        {
+        try {
             String sistemaOperativo = System.getProperty("os.name");
             ArrayList<String> comando= new ArrayList<>();
             if(sistemaOperativo.contains("Windows"))
@@ -311,10 +299,9 @@ public class Tablero {
             
             ProcessBuilder pb = new ProcessBuilder(comando);
             Process iniciarProceso = pb.inheritIO().start();
-            iniciarProceso.waitFor();   
+            iniciarProceso.waitFor();
         }
-        catch (IOException | InterruptedException e) 
-        {
+        catch (IOException | InterruptedException e) {
             System.out.println("Error al limpiar la pantalla"+e.getMessage());//si no es capaz de limpiar la pantalla salta este mensaje
         }
     }
@@ -339,23 +326,20 @@ public class Tablero {
 
     //COLOCACION AUTOMATICA DE LOS BARCOS
   
-    public boolean comprobarColocacion(int fila, int columna){
+    public boolean comprobarColocacion(int fila, int columna) {
+        //Comprueba la viabilidad de la colocación de los barcos en el tablero, comprobando si la posición seleccionada
+        //automáticamente está dentro del tablero, si existe un barco en esa posición y por último comprueba
+        //si hay barcos en las casillas adyacentes
         boolean esPosible=true;
 
         boolean alrededor;
 
-        
-
-
         while(esPosible==true){
-            
-            
+
             esPosible=esDentro(fila,columna);
             if(esPosible==false){//Si es dentro es false(Esta fuera del tablero) rompe la ejecución
                 break;
             }
-            
-            //esPosible=hayBarco(fila,columna);
             
             if(hayBarco(fila,columna)==true){//si hay barco en esa posición rompe la ejecución si no lo hubiera cambia es posible a true
                 break;
@@ -373,11 +357,11 @@ public class Tablero {
                 break;
             }
         }
-        
         return esPosible;
     }
     
     private boolean hayBarco(int fila, int columna){
+        //Comprueba si existe un barco en la casilla seleccionada
         boolean resul;
 
         if(this.tablero[fila][columna]=='B'){
@@ -385,10 +369,11 @@ public class Tablero {
         }else{
             resul=true;
         }
-        
         return resul;
     }
-    private boolean esDentro(int fila, int columna){//Comprueba si esta dentro del tablero
+
+    private boolean esDentro(int fila, int columna){
+        //Comprueba si está dentro del tablero
         boolean esDentro;
         if(columna>=0 && fila>=0){
             esDentro=true;
@@ -400,13 +385,11 @@ public class Tablero {
         }else{
             esDentro=false;
         }
-        
         return esDentro;
     }
     
-    
-    
-    private boolean comprobarAlrededor(int fila, int columna) {//comprueba la posibilidad de colocación en las casillas adyacentes
+    private boolean comprobarAlrededor(int fila, int columna) {
+        //comprueba la posibilidad de colocación en las casillas adyacentes
         boolean esPosible = true;
 
         //filas superior
@@ -417,12 +400,10 @@ public class Tablero {
         if(esPosible==true && esDentro(fila-1,columna) && hayBarco(fila-1,columna)){
             esPosible=false;
         }
-
         //fila superior
         if(esPosible==true && esDentro(fila-1, columna+1) && hayBarco(fila-1, columna+1)){
             esPosible = false;
         }
-
         //fila seleccionada
         if(esPosible==true && esDentro(fila, columna -1) && hayBarco(fila,columna-1)){
             esPosible = false;
@@ -447,12 +428,16 @@ public class Tablero {
         if(esPosible==true && esDentro(fila + 1, columna + 1) && hayBarco(fila+1,columna+1)) {
             esPosible = false;
         }
-
         return esPosible;
     }
 
     public boolean colocarBarcos(int size){
-        
+        /*
+        Genera aleatoriamente una opción (Dirección de colocación), una columna y una fila.
+        Se cuenta con 10 intentos, primero se comprueba la viabilidad de la colocación en caso de no ser posible se
+        resta un intento y vuelve a generar otras opciones, en caso de poderse colocar se procede a colocar los barcos
+        en el tablero.
+         */
         int intento=10;
         boolean esPosible=true;
         boolean colocado=false;
@@ -462,7 +447,6 @@ public class Tablero {
             int opt=(int) (Math.random()*8+1);
             int columna=(int) (Math.random()*(this.columna-1));
             int fila=(int) (Math.random()*(this.fila-1));
-
 
             switch(opt){
 
@@ -536,7 +520,7 @@ public class Tablero {
                     }
                     
                     break;
-                case 4://Diagonnal Derecha hacia abajo
+                case 4://Diagonal Derecha hacia abajo
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
@@ -655,7 +639,6 @@ public class Tablero {
                     
                     break;
             }
-
             
             if (esPosible==false){
                 intento--;

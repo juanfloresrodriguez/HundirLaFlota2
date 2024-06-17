@@ -29,7 +29,6 @@ public class HundirLaFlota2 {
         
         //Iniciamos el tablero
         Tablero t = new Tablero(fila, columna);
-        //Tablero t = new Tablero(8, 8);
 
         for(int i=0;i<tam.length;i++){//Colocación de barcos con la comprobación de si es posible correctamente aplicada
             esPosible=t.colocarBarcos(tam[i]);
@@ -39,13 +38,15 @@ public class HundirLaFlota2 {
                 System.exit(0);
             }
         }
-        t.colocarAgua();
+        t.colocarAgua(); //Una vez colocado los barcos colocamos el agua en el tablero
 
         municion=t.getMunicion();
         
         //MENU DE ACCIONES
         
         while(municion>0 && barcos==true){
+            //Se ejecuta siempre que el usuario tenga munición y queden barcos en caso de que alguna de las opciones
+            //no se cumplan terminará la partida
             t.mostrarTablero();
             
             System.out.println("¿Qué desea hacer?: ");
@@ -54,6 +55,7 @@ public class HundirLaFlota2 {
             System.out.println("3. Bomba Atomica");
             System.out.println("4. Pista");
             System.out.println("5. Flash");
+            System.out.println("Para salir introduzca -1");
             opt=sc.nextInt();
                        
             if(opt!=-1){
@@ -93,11 +95,11 @@ public class HundirLaFlota2 {
             }
             barcos=t.quedanBarcos();
         }
-        if (municion<=0){
+        if (municion<=0){ //Si pierdes por quedarte sin munición
             System.out.println("Game Over: Te has quedado sin munición");
-        }else if (opt==-1){
+        }else if (opt==-1){//Al finalizar la partida por decisión del jugador (Pulsando -1)
             System.out.println("Has salido de la partida");
-        }else{
+        }else{ //Si ganaste hundiendo todos los barcos
             System.out.println("Has Ganado. Hundiste todos los barcos");
         }
 
