@@ -50,11 +50,12 @@ public class HundirLaFlota2 {
             t.mostrarTablero();
             
             System.out.println("¿Qué desea hacer?: ");
-            System.out.println("1. Disparo Normal");
-            System.out.println("2. Bomba Barrena");
-            System.out.println("3. Bomba Atomica");
-            System.out.println("4. Pista");
-            System.out.println("5. Flash");
+            System.out.println("1. Disparo Normal (1 Bala)");
+            System.out.println("2. Bomba Barrena (Tamaño de la fila o Columna + 2 Balas)");
+            System.out.println("3. Bomba Atomica (10 Balas)");
+            System.out.println("4. Misil Fragmentación (10 Balas)");
+            System.out.println("5. Pista (15 Balas)");
+            System.out.println("6. Flash (25 Balas)");
             System.out.println("Para salir introduzca -1");
             opt=sc.nextInt();
                        
@@ -76,11 +77,16 @@ public class HundirLaFlota2 {
 
                     break;
                 case 4:
+                      t.misilFragmentacion();
+                      municion=t.getMunicion();
+
+                      break;
+                case 5:
                     t.pista();
                     municion=t.getMunicion();
 
                     break;
-                case 5:
+                case 6:
                     t.flash();
                     municion=t.getMunicion();
 

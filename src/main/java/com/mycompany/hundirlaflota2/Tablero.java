@@ -104,7 +104,9 @@ public class Tablero {
         o no en caso de no haber sido disparada se cambia el contenido de la misma
         para que mostrarTablero() pueda funcionar.
         */
-        if(f>=0 && c >= 0){ 
+        if(!esDentro(f,c)) {
+
+        }else if(f>=0 && c >= 0){
             if(this.tablero[f][c]=='B'){
                 this.tablero[f][c]='x';
             }else if(this.tablero[f][c]=='A'){
@@ -215,6 +217,45 @@ public class Tablero {
             cambiarCasilla(f+1,c-1);//fila inferior
             cambiarCasilla(f+1,c);//fila inferior
             cambiarCasilla(f+1,c+1);//fila inferior
+
+            this.municion-=10;
+        } else if (!esDentro(f,c)){
+            System.out.println("Esa posición no esta dentro del tablero");
+            bandera=false;
+        } else{
+            System.out.println("No tiene suficiente munición ");
+            bandera=false;
+        }
+    }
+
+    public void misilFragmentacion(){
+        /*
+        Esta arma devastadora se lanza
+        sobre unas coordenadas concretas (Fila y Columna) y tiene un efecto parecido a la bomba atómica
+        pero más amplio y diseminado.
+         */
+        int f, c;
+
+        System.out.println("¿Qué casilla desea atacar?: *Las casillas empiezan en 0*");
+        System.out.println("Introduzca la horizontal: ");
+        f=sc.nextInt();
+        System.out.println("Introduzca la vertical: ");
+        c=sc.nextInt();
+
+        if((this.municion - 10)>0 && esDentro(f,c)){//se puede disparar siempre que quede municion
+            //Preguntamos al usuario las casillas a disparar y cambiamos de valor las adyacentes y la disparada
+
+            cambiarCasilla(f,c-1);
+            cambiarCasilla(f+2,c-2);
+
+            cambiarCasilla(f+2,c);
+            cambiarCasilla(f+2,c+2);
+            cambiarCasilla(f,c+1);
+
+            cambiarCasilla(f+2,c+2);
+            cambiarCasilla(f-2,c-2);
+            cambiarCasilla(f-2,c);
+            cambiarCasilla(f-2,c+2);
 
             this.municion-=10;
         } else if (!esDentro(f,c)){
@@ -431,6 +472,7 @@ public class Tablero {
         return esPosible;
     }
 
+
     public boolean colocarBarcos(int size){
         /*
         Genera aleatoriamente una opción (Dirección de colocación), una columna y una fila.
@@ -444,7 +486,7 @@ public class Tablero {
         int nc,nf;
         
         while(intento>0 && colocado==false){
-            int opt=(int) (Math.random()*8+1);
+            int opt=(int) (Math.random()*4+1);
             int columna=(int) (Math.random()*(this.columna-1));
             int fila=(int) (Math.random()*(this.fila-1));
 
@@ -496,15 +538,110 @@ public class Tablero {
                     }
                     
                     break;
-                case 3://Diagonal Derecha hacia arriba
+//                case 3://Diagonal Derecha hacia arriba
+//                    nc=columna;
+//                    nf=fila;
+//                    for(int i=0;i<size;i++){
+//                        esPosible=comprobarColocacion(nf, nc);
+//                        if(esPosible==true){
+//
+//                            nf-=1;
+//                            nc-=1;
+//                        }else{
+//                            break;
+//                        }
+//                    }
+//
+//                    if(esPosible==true){
+//                        for(int i=0;i<size;i++){
+//                            this.tablero[fila][columna]='B';
+//                            fila-=1;
+//                            columna-=1;
+//                        }
+//                        colocado=true;
+//                    }
+//
+//                    break;
+//                case 4://Diagonal Derecha hacia abajo
+//                    nc=columna;
+//                    nf=fila;
+//                    for(int i=0;i<size;i++){
+//                        esPosible=comprobarColocacion(nf, nc);
+//                        if(esPosible==true){
+//
+//                            nf+=1;
+//                            nc+=1;
+//                        }else {
+//                            break;
+//                        }
+//                    }
+//
+//                    if(esPosible==true){
+//                        for(int i=0;i<size;i++){
+//                            this.tablero[fila][columna]='B';
+//                            fila+=1;
+//                            columna+=1;
+//                        }
+//                        colocado=true;
+//                    }
+//
+//                    break;
+//                case 5://Diagoanal Izquierda hacia arriba
+//                    nc=columna;
+//                    nf=fila;
+//                    for(int i=0;i<size;i++){
+//                        esPosible=comprobarColocacion(nf, nc);
+//                        if(esPosible==true){
+//
+//                            nf-=1;
+//                            nc+=1;
+//                        }else{
+//                            break;
+//                        }
+//                    }
+//
+//                    if(esPosible==true){
+//                        for(int i=0;i<size;i++){
+//                            this.tablero[fila][columna]='B';
+//                            fila-=1;
+//                            columna+=1;
+//                        }
+//                        colocado=true;
+//                    }
+//
+//                    break;
+//                case 6://Diagonal Izquierda hacia abajo
+//                    nc=columna;
+//                    nf=fila;
+//                    for(int i=0;i<size;i++){
+//                        esPosible=comprobarColocacion(nf, nc);
+//                        if(esPosible==true){
+//
+//                            nf+=1;
+//                            nc-=1;
+//                        }else{
+//                            break;
+//                        }
+//                    }
+//
+//                    if(esPosible==true){
+//                        for(int i=0;i<size;i++){
+//                            this.tablero[fila][columna]='B';
+//                            fila+=1;
+//                            columna-=1;
+//                        }
+//                        colocado=true;
+//                    }
+                    
+//                    break;
+                case 3://Hacia la Izquierda
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
                         esPosible=comprobarColocacion(nf, nc);
                         if(esPosible==true){
                             
-                            nf-=1;
-                            nc-=1;
+                            nc+=1;
                         }else{
                             break;
                         }
@@ -513,109 +650,14 @@ public class Tablero {
                     if(esPosible==true){
                         for(int i=0;i<size;i++){
                             this.tablero[fila][columna]='B';
-                            fila-=1;
-                            columna-=1;
-                        }
-                        colocado=true;
-                    }
-                    
-                    break;
-                case 4://Diagonal Derecha hacia abajo
-                    nc=columna;
-                    nf=fila;
-                    for(int i=0;i<size;i++){
-                        esPosible=comprobarColocacion(nf, nc);
-                        if(esPosible==true){
                             
-                            nf+=1;
-                            nc+=1;
-                        }else {
-                            break;
-                        }
-                    }
-                    
-                    if(esPosible==true){
-                        for(int i=0;i<size;i++){
-                            this.tablero[fila][columna]='B';
-                            fila+=1;
                             columna+=1;
                         }
                         colocado=true;
                     }
                     
                     break;
-                case 5://Diagoanal Izquierda hacia arriba
-                    nc=columna;
-                    nf=fila;
-                    for(int i=0;i<size;i++){
-                        esPosible=comprobarColocacion(nf, nc);
-                        if(esPosible==true){
-                            
-                            nf-=1;
-                            nc+=1;
-                        }else{
-                            break;
-                        }
-                    }
-                    
-                    if(esPosible==true){
-                        for(int i=0;i<size;i++){
-                            this.tablero[fila][columna]='B';
-                            fila-=1;
-                            columna+=1;
-                        }
-                        colocado=true;
-                    }
-                    
-                    break;
-                case 6://Diagonal Izquierda hacia abajo
-                    nc=columna;
-                    nf=fila;
-                    for(int i=0;i<size;i++){
-                        esPosible=comprobarColocacion(nf, nc);
-                        if(esPosible==true){
-                            
-                            nf+=1;
-                            nc-=1;
-                        }else{
-                            break;
-                        }
-                    }
-                    
-                    if(esPosible==true){
-                        for(int i=0;i<size;i++){
-                            this.tablero[fila][columna]='B';
-                            fila+=1;
-                            columna-=1;
-                        }
-                        colocado=true;
-                    }
-                    
-                    break;
-                case 7://Hacia la Izquierda
-                    nc=columna;
-                    nf=fila;
-                    for(int i=0;i<size;i++){
-                        esPosible=comprobarColocacion(nf, nc);
-                        if(esPosible==true){
-                            
-                            nc+=1;
-                        }else{
-                            break;
-                        }
-                    }
-                    
-                    if(esPosible==true){
-                        for(int i=0;i<size;i++){
-                            this.tablero[fila][columna]='B';
-                            
-                            columna+=1;
-                        }
-                        colocado=true;
-                    }
-                    
-                    break;
-                case 8://Hacia la Derecha
+                case 4://Hacia la Derecha
                     nc=columna;
                     nf=fila;
                     for(int i=0;i<size;i++){
